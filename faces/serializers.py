@@ -1,29 +1,27 @@
-from rest_framework.fields import ImageField
-from rest_framework.serializers import ModelSerializer, Serializer
+from rest_framework.serializers import ModelSerializer
+
 from .models import Face
 
 
 class FaceSerializer(ModelSerializer):
+
     class Meta:
         model = Face
         fields = [
+            'id',
             'face_image',
             'face_id',
+            'face_name',
+            'unknown',
         ]
-        read_only_fields = ['created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'unknown']
 
 
-class UnknownFaceSerializer(Serializer):
-    face_image = ImageField()
-
-    def update(self, instance, validated_data):
-        instance.face_image = validated_data.get('face_image', instance.face_image)
-        return instance
-
-class RecognitionSerializer(ModelSerializer):
+class UnknownFaceSerializer(ModelSerializer):
     class Meta:
         model = Face
         fields = [
             'face_image',
+            'unknown',
         ]
-        read_only_fields = ['created_at', 'updated_at']
+        read_only_fields = ['unknown', 'created_at', 'updated_at']
