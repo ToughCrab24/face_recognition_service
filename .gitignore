@@ -106,3 +106,4 @@ media/*
 !media/.gitkeep
 
 images/
+.pg_data

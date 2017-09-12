@@ -26,11 +26,10 @@ class FaceProcessor(APIView):
 
     def post(self, request):
         data = request.data
-        data['unknown'] = True
 
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(unknown=True)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
