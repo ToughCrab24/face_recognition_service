@@ -1,0 +1,18 @@
+version: '3'
+
+volumes:
+  db_data:
+
+services:
+  web:
+    image: hackers/face_recognition
+    command: ./wait.sh -s db:5432 -- ./run.sh python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 80:8000
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data

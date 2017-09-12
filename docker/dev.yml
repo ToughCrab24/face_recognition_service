@@ -1,0 +1,15 @@
+version: '3'
+
+volumes:
+  db_data:
+
+services:
+  web:
+    volumes:
+      - ../:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+
+  db:
+    volumes:
+      - db_data:/var/lib/postgresql/data
