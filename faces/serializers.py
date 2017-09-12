@@ -1,9 +1,11 @@
 from rest_framework.serializers import ModelSerializer
 
+from faces.fields import Base64ImageField
 from .models import Face
 
 
 class FaceSerializer(ModelSerializer):
+    face_image = Base64ImageField()
 
     class Meta:
         model = Face
@@ -18,6 +20,8 @@ class FaceSerializer(ModelSerializer):
 
 
 class UnknownFaceSerializer(ModelSerializer):
+    face_image = Base64ImageField()
+
     class Meta:
         model = Face
         fields = [
