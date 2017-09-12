@@ -104,3 +104,5 @@ clients/*
 # Local file uploads
 media/*
 !media/.gitkeep
+
+images/
