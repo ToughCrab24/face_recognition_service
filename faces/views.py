@@ -2,7 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from faces.models import Face
-from faces.serializers import FaceSerializer
+from faces.serializers import FaceSerializer, UnknownFaceSerializer
 
 
 class FaceViewSet(ModelViewSet):
@@ -15,7 +15,7 @@ class FaceViewSet(ModelViewSet):
 class FaceProcessor(APIView):
 
     queryset = Face.objects.all()
-    serializer_class = FaceSerializer
+    serializer_class = UnknownFaceSerializer
     lookup_field = 'id'
 
     def post(self):
